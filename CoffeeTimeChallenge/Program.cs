@@ -14,12 +14,20 @@ namespace CoffeeTimeChallenge
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Challenge 1: Find three digits X, Y and Z such that XYZ in base10 (ten) is equal to ZYX in base9 (nine)? ");
+            System.Console.WriteLine("Challenge 1:");
+            System.Console.WriteLine("Find three digits X, Y and Z such that XYZ in base10 (ten) is equal to ZYX in base9 (nine)? ");
             challengeOne();
-            System.Console.WriteLine("\nWrite 1,000,000 as the product of two numbers; neither of which contains any zeroes");
+            System.Console.WriteLine("\nChallenge 2:");
+            System.Console.WriteLine("Write 1,000,000 as the product of two numbers; neither of which contains any zeroes");
             challengeTwo();
-            System.Console.WriteLine("\nUse the digits 0-9 to create two numbers. What is the highest product you can achieve when these two numbers are multiplied together?");
+            System.Console.WriteLine("\nChallenge 3:");
+            System.Console.WriteLine("Use the digits 0-9 to create two numbers. What is the highest product you can achieve when these two numbers are multiplied together?");
             challengeThree();
+            System.Console.WriteLine("\nChallenge 4:");
+            System.Console.WriteLine("Arrange the numerals 1-9 into a single fraction that equals exactly 1/3 (one third).");
+            System.Console.WriteLine("No other math symbols wanted; just concatenation some digits for the numerator, and some to make a denominator.");
+            challengeFour();
+
 
             System.Console.Read();
         }
@@ -136,6 +144,51 @@ namespace CoffeeTimeChallenge
                 {
                     rightVal += (arr[i] * ((long)Math.Pow(10, rightPlace)));
                     rightPlace++;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Arrange the numerals 1-9 into a single fraction that equals exactly 1/3 (one third).
+        /// No other math symbols wanted; just concatenation some digits for the numerator, and some to make a denominator.
+        /// 
+        /// Loop through possible nominators, calculate the corresponding denominator, then check if it meets the criteria.
+        /// </summary>
+        private static void challengeFour()
+        {
+            for (int i = 1; i < int.MaxValue; i++)
+            {
+                int denom = i * 3;
+                //Skip cases with 0's in them.
+                if(i.ToString().Contains('0') || denom.ToString().Contains('0'))
+                {
+                    continue;
+                }
+                int length = i.ToString().Length + denom.ToString().Length;
+                if (length == 9)
+                {
+                    int[] arr = new int[9];
+                    foreach (char c in i.ToString()+denom.ToString())
+                    {
+                        arr[int.Parse(c.ToString())-1]++;   //should never have a '0' character
+                    }
+                    bool answer = true;
+                    foreach (var item in arr)
+                    {
+                        if (item != 1)
+                        {
+                            answer = false;
+                            break;
+                        }
+                    }
+                    if (answer)
+                    {
+                        System.Console.WriteLine(string.Format("Numerator: {0}. Denominator: {1}", i, denom));
+                    }
+                }
+                else if (length > 9)
+                {
+                    return;
                 }
             }
         }
