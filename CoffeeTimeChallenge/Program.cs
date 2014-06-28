@@ -30,6 +30,11 @@ namespace CoffeeTimeChallenge
             System.Console.WriteLine("\nChallenge 5:");
             System.Console.WriteLine("I roll three dice, and multiply the three numbers together. What is the probability the total will be odd?");
             challengeFive();
+            System.Console.WriteLine("\nChallenge 6:");
+            System.Console.WriteLine("I open up a Word document and type all the numbers 1-10000, separated by spaces, (I did not use any 'thousands' punctuation; just raw numbers).");
+            System.Console.WriteLine("Then, my daughter came along and used search and replace, and changed all the digits '0' into spaces.");
+            System.Console.WriteLine("If I now sum up all the numbers in the document what is the total? (Any number delineated by one or more spaces is a distinct number)");
+            challengeSix();
 
 
             System.Console.Read();
@@ -198,6 +203,11 @@ namespace CoffeeTimeChallenge
 
         /// <summary>
         /// I roll three dice, and multiply the three numbers together. What is the probability the total will be odd?
+        /// 
+        /// I am doing this programmatically, but I could do it in my head easily.
+        /// In order to get an odd product, all three dice have to be odd.
+        /// Probability of any one die being odd is 1/2.
+        /// So answer = 1/2 * 1/2 * 1/2 = 1/8 = 0.125%
         /// </summary>
         private static void challengeFive()
         {
@@ -221,6 +231,33 @@ namespace CoffeeTimeChallenge
             }
             System.Console.WriteLine(string.Format("{0} odds in {1} attempts. {2}% odd.", odd, total, (double)odd/total));
         }
-        
+
+        /// <summary>
+        /// I open up a Word document and type all the numbers 1-10000, separated by spaces, (I did not use any 'thousands' punctuation; just raw numbers). 
+        /// Then, my daughter came along and used search and replace, and changed all the digits '0' into spaces. 
+        /// If I now sum up all the numbers in the document what is the total? 
+        /// (Any number delineated by one or more spaces is a distinct number).
+        /// </summary>
+        private static void challengeSix()
+        {
+            int[] arr = new int[10000];
+            for (int i = 0; i < 10000; i++)
+            {
+                if((i+1).ToString().Contains('0'))
+                {
+                    char[] delimeters = new char[] { '0' }; //I do this so I can use the "remove empty entries" option.
+                    string[] nums = (i + 1).ToString().Split(delimeters, StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string num in nums)
+                    {
+                        arr[i] += int.Parse(num);
+                    }
+                }
+                else
+                {
+                    arr[i] = i+1;   //index starts at 0 but the values start at 1
+                }
+            }
+            System.Console.WriteLine(arr.Sum());
+        }
     }
 }
