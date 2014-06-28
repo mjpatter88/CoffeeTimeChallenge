@@ -12,6 +12,18 @@ namespace CoffeeTimeChallenge
     /// </summary>
     class Program
     {
+        private class IntPair
+        {
+            public int Item1;
+            public int Item2;
+
+            public IntPair(int i1, int i2)
+            {
+                Item1 = i1;
+                Item2 = i2;
+            }
+        }
+
         static void Main(string[] args)
         {
             System.Console.WriteLine("Challenge 1:");
@@ -39,8 +51,12 @@ namespace CoffeeTimeChallenge
             System.Console.WriteLine("In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room?");
             System.Console.WriteLine("(No tricks, no chromosomal abnormalities, no disabilities …)");
             challengeSeven();
+            System.Console.WriteLine("\nChallenge 10:");
+            System.Console.WriteLine("Put the numbers 1-13 into three buckets with the constraint that the difference between any two pairs of numbers in any bucket is not a number also in that bucket.");
+            System.Console.WriteLine("(e.g. If you place 5,7 in a bucket, then you cannot place 2 in that same bucket).");
+            challenge10();
 
-
+            System.Console.WriteLine("\n\n\nPress any key to exit...");
             System.Console.Read();
         }
 
@@ -268,7 +284,7 @@ namespace CoffeeTimeChallenge
         /// In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room? 
         /// (No tricks, no chromosomal abnormalities, no disabilities …)
         /// 
-        /// Again, brute force seems easy enough.
+        /// Again, brute force seems easy enough. I could also just use pen and paper with a system of two equations with two unknowns.
         /// </summary>
         private static void challengeSeven()
         {
@@ -281,6 +297,96 @@ namespace CoffeeTimeChallenge
                     System.Console.WriteLine(string.Format("{0} people and {1} dogs.", people, dogs));
                 }
             }
+        }
+
+        /// <summary>
+        /// Put the numbers 1-13 into three buckets with the constraint that the difference between any two pairs of numbers in any bucket is not a number also in that bucket. 
+        /// (e.g. If you place 5,7 in a bucket, then you cannot place 2 in that same bucket).
+        /// 
+        /// This problem can be solved in a manner similar to challenge #3. 
+        /// Each number must go in one of three places, so I can iterate over all possible options.
+        /// </summary>
+        private static void challenge10()
+        {
+            //Each pair represents a number and its bucket assignment
+           IntPair[] pairs = new IntPair[13];
+            for (int i = 0; i < 13; i++)
+			{
+                pairs[i] = new IntPair(i+1, 0);
+			}
+
+            //We know the final position is with all values at 2.
+            //We also know this will not be a solution, so we can end prior to testing it.
+            int sum = 0;
+            while (sum != 25)
+            {
+                //check if the current configuration is a solution (complicated process)
+                IntPair[] bucket1Nums = Array.FindAll<IntPair>(pairs, element => element.Item2 == 0);
+                IntPair[] bucket2Nums = Array.FindAll<IntPair>(pairs, element => element.Item2 == 1);
+                IntPair[] bucket3Nums = Array.FindAll<IntPair>(pairs, element => element.Item2 == 2);
+                if(checkBucket(bucket1Nums) && checkBucket(bucket2Nums) && checkBucket(bucket3Nums))
+                {
+                    StringBuilder output = new StringBuilder();
+                    output.Append("Bucket1: [");
+                    foreach (var item in bucket1Nums)
+                    {
+                        output.Append(item.Item1 + " ");
+                    }
+                    output.Append("] Bucket2: [");
+                    foreach (var item in bucket2Nums)
+                    {
+                        output.Append(item.Item1 + " ");
+                    }
+                    output.Append("] Bucket3: [");
+                    foreach (var item in bucket3Nums)
+                    {
+                        output.Append(item.Item1 + " ");
+                    }
+                    output.Append("]");
+                    System.Console.WriteLine(output.ToString());
+                }
+
+                //increment to the next configuration
+                for (int i = 0; i < pairs.Length; i++)
+                {
+                    if (pairs[i].Item2 == 2)
+                    {
+                        pairs[i].Item2 = 0;
+                    }
+                    else
+                    {
+                        pairs[i].Item2++;
+                        break;
+                    }
+                }
+
+                //Update the value of sum
+                sum = 0;
+                foreach (var pair in pairs)
+	            {
+                    sum += pair.Item2;
+	            }
+            }
+        }
+
+        private static bool checkBucket(IntPair[] bucketNums)
+        {
+            for (int i = 0; i < bucketNums.Length-1; i++)
+            {
+                for (int indexToAdd = 0; indexToAdd < bucketNums.Length; indexToAdd++)
+                {
+                    for (int cmpToIndex = i + 1; cmpToIndex < bucketNums.Length; cmpToIndex++)
+                    {
+                        if (bucketNums[i].Item1 + bucketNums[indexToAdd].Item1 == bucketNums[cmpToIndex].Item1)
+                        {
+                            return false;
+                        }
+                    }
+                }
+                
+            }
+
+            return true;
         }
     }
 }
