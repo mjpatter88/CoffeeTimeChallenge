@@ -35,6 +35,10 @@ namespace CoffeeTimeChallenge
             System.Console.WriteLine("Then, my daughter came along and used search and replace, and changed all the digits '0' into spaces.");
             System.Console.WriteLine("If I now sum up all the numbers in the document what is the total? (Any number delineated by one or more spaces is a distinct number)");
             challengeSix();
+            System.Console.WriteLine("\nChallenge 7:");
+            System.Console.WriteLine("In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room?");
+            System.Console.WriteLine("(No tricks, no chromosomal abnormalities, no disabilities …)");
+            challengeSeven();
 
 
             System.Console.Read();
@@ -258,6 +262,25 @@ namespace CoffeeTimeChallenge
                 }
             }
             System.Console.WriteLine(arr.Sum());
+        }
+
+        /// <summary>
+        /// In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room? 
+        /// (No tricks, no chromosomal abnormalities, no disabilities …)
+        /// 
+        /// Again, brute force seems easy enough.
+        /// </summary>
+        private static void challengeSeven()
+        {
+            for (int people = 0; people < 73; people++)
+            {
+                int dogs = 72 - people;
+                int legs = 2 * people + 4 * dogs;
+                if (legs == 200)
+                {
+                    System.Console.WriteLine(string.Format("{0} people and {1} dogs.", people, dogs));
+                }
+            }
         }
     }
 }
