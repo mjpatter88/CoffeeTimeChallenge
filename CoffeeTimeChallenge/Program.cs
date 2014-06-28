@@ -27,6 +27,9 @@ namespace CoffeeTimeChallenge
             System.Console.WriteLine("Arrange the numerals 1-9 into a single fraction that equals exactly 1/3 (one third).");
             System.Console.WriteLine("No other math symbols wanted; just concatenation some digits for the numerator, and some to make a denominator.");
             challengeFour();
+            System.Console.WriteLine("\nChallenge 5:");
+            System.Console.WriteLine("I roll three dice, and multiply the three numbers together. What is the probability the total will be odd?");
+            challengeFive();
 
 
             System.Console.Read();
@@ -191,6 +194,32 @@ namespace CoffeeTimeChallenge
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// I roll three dice, and multiply the three numbers together. What is the probability the total will be odd?
+        /// </summary>
+        private static void challengeFive()
+        {
+            int odd = 0;
+            int total = 0;
+            //basic brute force method
+            for (int i = 1; i < 7; i++)
+            {
+                for (int j = 1; j < 7; j++)
+                {
+                    for (int k = 1; k < 7; k++)
+                    {
+                        int product = i * j * k;
+                        if ((product % 2) != 0)
+                        {
+                            odd++;
+                        }
+                        total++;
+                    }
+                }
+            }
+            System.Console.WriteLine(string.Format("{0} odds in {1} attempts. {2}% odd.", odd, total, (double)odd/total));
         }
         
     }
