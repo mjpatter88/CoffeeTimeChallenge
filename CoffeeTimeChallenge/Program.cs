@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+
+
 namespace CoffeeTimeChallenge
 {
     /// <summary>
@@ -26,40 +28,70 @@ namespace CoffeeTimeChallenge
 
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Challenge 1:");
-            System.Console.WriteLine("Find three digits X, Y and Z such that XYZ in base10 (ten) is equal to ZYX in base9 (nine)? ");
-            challengeOne();
-            System.Console.WriteLine("\nChallenge 2:");
-            System.Console.WriteLine("Write 1,000,000 as the product of two numbers; neither of which contains any zeroes");
-            challengeTwo();
-            System.Console.WriteLine("\nChallenge 3:");
-            System.Console.WriteLine("Use the digits 0-9 to create two numbers. What is the highest product you can achieve when these two numbers are multiplied together?");
-            challengeThree();
-            System.Console.WriteLine("\nChallenge 4:");
-            System.Console.WriteLine("Arrange the numerals 1-9 into a single fraction that equals exactly 1/3 (one third).");
-            System.Console.WriteLine("No other math symbols wanted; just concatenation some digits for the numerator, and some to make a denominator.");
-            challengeFour();
-            System.Console.WriteLine("\nChallenge 5:");
-            System.Console.WriteLine("I roll three dice, and multiply the three numbers together. What is the probability the total will be odd?");
-            challengeFive();
-            System.Console.WriteLine("\nChallenge 6:");
-            System.Console.WriteLine("I open up a Word document and type all the numbers 1-10000, separated by spaces, (I did not use any 'thousands' punctuation; just raw numbers).");
-            System.Console.WriteLine("Then, my daughter came along and used search and replace, and changed all the digits '0' into spaces.");
-            System.Console.WriteLine("If I now sum up all the numbers in the document what is the total? (Any number delineated by one or more spaces is a distinct number)");
-            challengeSix();
-            System.Console.WriteLine("\nChallenge 7:");
-            System.Console.WriteLine("In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room?");
-            System.Console.WriteLine("(No tricks, no chromosomal abnormalities, no disabilities …)");
-            challengeSeven();
-            System.Console.WriteLine("\nChallenge 10:");
-            System.Console.WriteLine("Put the numbers 1-13 into three buckets with the constraint that the difference between any two pairs of numbers in any bucket is not a number also in that bucket.");
-            System.Console.WriteLine("(e.g. If you place 5,7 in a bucket, then you cannot place 2 in that same bucket).");
-            challenge10();
-            System.Console.WriteLine("\nChallenge 11:");
-            System.Console.WriteLine("I’ve written down all the integers from 1 to 65,502 inclusive.");
-            System.Console.WriteLine("I select two of them, cross them out, and multiply them together to get a product.");
-            System.Console.WriteLine("When I sum up the remaining 65,500 numbers, I get the same result. What two numbers did I pick?");
-            challenge11();
+            bool RUNALL = true;
+            if (RUNALL)
+            {
+                System.Console.WriteLine("Challenge 1:");
+                System.Console.WriteLine("Find three digits X, Y and Z such that XYZ in base10 (ten) is equal to ZYX in base9 (nine)? ");
+                challengeOne();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 2:");
+                System.Console.WriteLine("Write 1,000,000 as the product of two numbers; neither of which contains any zeroes");
+                challengeTwo();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 3:");
+                System.Console.WriteLine("Use the digits 0-9 to create two numbers. What is the highest product you can achieve when these two numbers are multiplied together?");
+                challengeThree();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 4:");
+                System.Console.WriteLine("Arrange the numerals 1-9 into a single fraction that equals exactly 1/3 (one third).");
+                System.Console.WriteLine("No other math symbols wanted; just concatenation some digits for the numerator, and some to make a denominator.");
+                challengeFour();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 5:");
+                System.Console.WriteLine("I roll three dice, and multiply the three numbers together. What is the probability the total will be odd?");
+                challengeFive();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 6:");
+                System.Console.WriteLine("I open up a Word document and type all the numbers 1-10000, separated by spaces, (I did not use any 'thousands' punctuation; just raw numbers).");
+                System.Console.WriteLine("Then, my daughter came along and used search and replace, and changed all the digits '0' into spaces.");
+                System.Console.WriteLine("If I now sum up all the numbers in the document what is the total? (Any number delineated by one or more spaces is a distinct number)");
+                challengeSix();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 7:");
+                System.Console.WriteLine("In a room there are a mixture of people and dogs. There are 72 heads, and 200 legs. How many dogs are in the room?");
+                System.Console.WriteLine("(No tricks, no chromosomal abnormalities, no disabilities …)");
+                challengeSeven();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 10:");
+                System.Console.WriteLine("Put the numbers 1-13 into three buckets with the constraint that the difference between any two pairs of numbers in any bucket is not a number also in that bucket.");
+                System.Console.WriteLine("(e.g. If you place 5,7 in a bucket, then you cannot place 2 in that same bucket).");
+                challenge10();
+            }
+            if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 11:");
+                System.Console.WriteLine("I’ve written down all the integers from 1 to 65,502 inclusive.");
+                System.Console.WriteLine("I select two of them, cross them out, and multiply them together to get a product.");
+                System.Console.WriteLine("When I sum up the remaining 65,500 numbers, I get the same result. What two numbers did I pick?");
+                challenge11();
+            }
+            
+            
              
 
             System.Console.WriteLine("\n\n\nPress any key to exit...");
