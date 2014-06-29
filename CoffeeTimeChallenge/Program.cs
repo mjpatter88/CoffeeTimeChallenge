@@ -55,6 +55,12 @@ namespace CoffeeTimeChallenge
             System.Console.WriteLine("Put the numbers 1-13 into three buckets with the constraint that the difference between any two pairs of numbers in any bucket is not a number also in that bucket.");
             System.Console.WriteLine("(e.g. If you place 5,7 in a bucket, then you cannot place 2 in that same bucket).");
             challenge10();
+            System.Console.WriteLine("\nChallenge 11:");
+            System.Console.WriteLine("I’ve written down all the integers from 1 to 65,502 inclusive.");
+            System.Console.WriteLine("I select two of them, cross them out, and multiply them together to get a product.");
+            System.Console.WriteLine("When I sum up the remaining 65,500 numbers, I get the same result. What two numbers did I pick?");
+            challenge11();
+             
 
             System.Console.WriteLine("\n\n\nPress any key to exit...");
             System.Console.Read();
@@ -387,6 +393,43 @@ namespace CoffeeTimeChallenge
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// I’ve written down all the integers from 1 to 65,502 inclusive. 
+        /// I select two of them, cross them out, and multiply them together to get a product. 
+        /// When I sum up the remaining 65,500 numbers, I get the same result. What two numbers did I pick?
+        /// 
+        /// Another simple brute force method should work
+        /// </summary>
+        private static void challenge11()
+        {
+            int RANGE = 65502;
+            int[] arr = new int[RANGE];
+            for (int i = 0; i < RANGE; i++)
+            {
+                arr[i] = i + 1;
+            }
+            int sum = arr.Sum();    //I can calculate the total sum once, and then just subtract the two numbers. (saves tons of time)
+            long count = 0;
+            for (int index1 = 0; index1 < RANGE-1; index1++)
+            {
+                for (int index2 = index1 + 1; index2 < RANGE; index2++)
+                {
+                    int val1 = arr[index1];
+                    int val2 = arr[index2];
+                    int newSum = sum - val1 - val2;
+                    if (val1 * val2 == newSum)
+                    {
+                        System.Console.WriteLine(string.Format("Value 1: {0}. Value 2: {1}", val1, val2));
+                    }
+                    count++;
+                    if (count % 500000000 == 0)
+                    {
+                        System.Console.WriteLine(count/1000000 + " million tested.");
+                    }
+                }
+            }
         }
     }
 }
