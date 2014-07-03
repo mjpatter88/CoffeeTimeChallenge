@@ -28,7 +28,7 @@ namespace CoffeeTimeChallenge
 
         static void Main(string[] args)
         {
-            bool RUNALL = true;
+            bool RUNALL = false;
             if (RUNALL)
             {
                 System.Console.WriteLine("Challenge 1:");
@@ -90,7 +90,12 @@ namespace CoffeeTimeChallenge
                 System.Console.WriteLine("When I sum up the remaining 65,500 numbers, I get the same result. What two numbers did I pick?");
                 challenge11();
             }
-            
+            //if (RUNALL)
+            {
+                System.Console.WriteLine("\nChallenge 12:");
+                Console.WriteLine("Arrange the integers 1-17 (inclusive) so that each adjacent pair of numbers is a perfect square. e.g. 14, 2, 7 … (The first and last do not have to wrap around)");
+                challenge12();
+            }
             
              
 
@@ -462,6 +467,58 @@ namespace CoffeeTimeChallenge
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Arrange the integers 1-17 (inclusive) so that each adjacent pair of numbers is a perfect square. e.g. 14, 2, 7 … (The first and last do not have to wrap around) 
+        /// My idea here is do to a recursive solution that tries to solve it one digit at a time.
+        /// </summary>
+        private static void challenge12()
+        {
+            int[] arr = new int[17];
+            int index = 0;
+            recChal12(arr, index);
+        }
+
+        private static bool recChal12(int[] arr, int index)
+        {
+            int[] squares = new int[] {4, 9, 16, 25, 36, 49, 64, 81};
+            // We have 16 numbers in place, so we have a correct solution.
+            if (index > 16)
+            {
+                Console.WriteLine(string.Join(", ", arr));
+                return true;
+            }
+            // Try each legal value checking for a possible solution
+            for (int i = 1; i < 18; i++)
+            {
+                // If index is 0, we are the first position and can try all numbers in this spot
+                if (index == 0)
+                {
+                    // Look for all solutions, not just the first one.
+                    arr[index] = i;
+                    recChal12(arr, index + 1);
+                    //if (recChal12(arr, index+1))
+                    //{
+                    //    return true;
+                    //}
+                }
+                else
+                {
+                    // Only try numbers that aren't already used and that create squares when added to the previous number
+                    if(!arr.Contains(i) && squares.Contains(arr[index - 1] + i))
+                    {
+                        arr[index] = i;
+                        recChal12(arr, index + 1);
+                    }
+                }
+            }
+            //Before we return false, we need to zero out the values that we added to the array going down the wrong path.
+            for (int i = index; i < arr.Length; i++)
+            {
+                arr[i] = 0;
+            }
+            return false;
         }
     }
 }
