@@ -90,11 +90,17 @@ namespace CoffeeTimeChallenge
                 System.Console.WriteLine("When I sum up the remaining 65,500 numbers, I get the same result. What two numbers did I pick?");
                 challenge11();
             }
-            //if (RUNALL)
+            if (RUNALL)
             {
                 System.Console.WriteLine("\nChallenge 12:");
                 Console.WriteLine("Arrange the integers 1-17 (inclusive) so that each adjacent pair of numbers is a perfect square. e.g. 14, 2, 7 … (The first and last do not have to wrap around)");
                 challenge12();
+            }
+            //if (RUNALL)
+            {
+                Console.WriteLine("\nChallenge 13:");
+                Console.WriteLine("ABCDEFGHIJ is a ten-digit-number. All of the digits are distinct. If 11111 divides it evenly, how many possibilities are there for ABCDEFGHIJ?");
+                challenge13();
             }
             
              
@@ -519,6 +525,39 @@ namespace CoffeeTimeChallenge
                 arr[i] = 0;
             }
             return false;
+        }
+
+        /// <summary>
+        /// ABCDEFGHIJ is a ten-digit-number. All of the digits are distinct. If 11111 divides it evenly, how many possibilities are there for ABCDEFGHIJ? 
+        /// </summary>
+        private static void challenge13()
+        {
+            long max = 9999999999;
+            int count = 0;
+            for (long i = 11111; i < max; i+=11111)
+            {
+                int[] digitCounts = new int[10];
+                // We know it's divisible by 11111, now we just check for uniqueness
+                string num = i.ToString();
+                for (int j = 0; j < num.Length; j++)
+                {
+                    digitCounts[int.Parse(num[j].ToString())]++;
+                }
+                bool solution = true;
+                for (int j = 0; j < digitCounts.Length; j++)
+                {
+                    if (digitCounts[j] != 1)
+                    {
+                        solution = false;
+                        break;
+                    }
+                }
+                if (solution)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine(count);
         }
     }
 }
