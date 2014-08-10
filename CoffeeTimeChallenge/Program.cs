@@ -96,18 +96,21 @@ namespace CoffeeTimeChallenge
                 Console.WriteLine("Arrange the integers 1-17 (inclusive) so that each adjacent pair of numbers is a perfect square. e.g. 14, 2, 7 … (The first and last do not have to wrap around)");
                 challenge12();
             }
-            //if (RUNALL)
+            if (RUNALL)
             {
                 Console.WriteLine("\nChallenge 13:");
                 Console.WriteLine("ABCDEFGHIJ is a ten-digit-number. All of the digits are distinct. If 11111 divides it evenly, how many possibilities are there for ABCDEFGHIJ?");
                 challenge13();
             }
-            
+
+            Console.WriteLine("\nChallenge 15:");
+            challenge15();
              
 
             System.Console.WriteLine("\n\n\nPress any key to exit...");
             System.Console.Read();
         }
+
 
 
 
@@ -558,6 +561,22 @@ namespace CoffeeTimeChallenge
                 }
             }
             Console.WriteLine(count);
+        }
+        
+        /// <summary>
+        /// You’re taking care of a friend’s house whilst he’s on vacation. 
+        /// In one room you pull the chain on a ceiling fan, and when it doesn’t respond you realize the house has temporarily lost power. 
+        /// Doh! Unfortunately, you have to leave now, and you’ll be away for several days.
+        ///
+        /// You know that the fan was in the “off” position before you pulled the chain, and that pulling the chain successively will cycle it through its remaining settings (“off,” “high”, “medium”. etc.). 
+        /// You don’t know how many settings there are, but you are sure there aren’t more than four.
+        ///
+        /// How can you ensure the fan will be in the “off” positions when power is restored? 
+        /// </summary>
+        private static void challenge15()
+        {
+            // You need to find the least common denominator of 1, 2, 3, and 4. After this many pulls, it will be back where you started. Then you subtract 1 to get back to off.
+            Console.WriteLine("11");
         }
     }
 }
