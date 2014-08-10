@@ -106,6 +106,8 @@ namespace CoffeeTimeChallenge
             Console.WriteLine("\nChallenge 15:");
             challenge15();
              
+            Console.WriteLine("\nChallenge 16:");
+            challenge16();
 
             System.Console.WriteLine("\n\n\nPress any key to exit...");
             System.Console.Read();
@@ -577,6 +579,34 @@ namespace CoffeeTimeChallenge
         {
             // You need to find the least common denominator of 1, 2, 3, and 4. After this many pulls, it will be back where you started. Then you subtract 1 to get back to off.
             Console.WriteLine("11");
+        }
+
+        /// <summary>
+        /// You are in a totally dark room. The only light in the room comes from an old LED digital alarm clock (with four seven segment displays). 
+        /// The clock display is HH:MM (no seconds). The clock is configured to display time in 24 hour format and the leading digit is blank if not used. 
+        /// What is the period of time between when the room is at its darkest, to when it is at its lightest? 
+        /// </summary>
+        private static void challenge16()
+        {
+            /*
+             * 0 -> 6
+             * 1 -> 2
+             * 2 -> 5
+             * 3 -> 5
+             * 4 -> 4
+             * 5 -> 5
+             * 6 -> 6
+             * 7 -> 3
+             * 8 -> 7
+             * 9 -> 5
+             * 
+             * Darkest = 1:11 (2+4=6 lines lit up)
+             * Lightest = 20:08 (11+13=24 lines lit up)
+             * Time in between = 18 hours and 57 minutes
+             */
+
+            Console.WriteLine("18 hours and 57 minutes");
+
         }
     }
 }
